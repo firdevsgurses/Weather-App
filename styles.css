@@ -1,10 +1,15 @@
 *{
     font-family: 'Roboto', sans-serif;
 }
+
 body,html{
     margin: 0;
     padding: 0;
     height: 100%;
+    background-image: url('background.png'); /* Replace 'background.jpg' with your actual image file */
+    background-size: cover; /* This property ensures that the background image covers the entire viewport */
+    background-position: center; /* This property centers the background image */
+    background-repeat: no-repeat;
 }
 
 .container{
@@ -12,15 +17,16 @@ body,html{
     padding: 0;
     width: 100vw;
     height: 100vh;
-    background-color: aquamarine;
+    
 }
 
 .navbar{
     display: flex;
     align-items: center;
     width: 100vw;
-    height: 60px;
+    height: 80px;
     background-color: white;
+    
     flex-direction: row;
    
 }
@@ -28,8 +34,8 @@ body,html{
     margin: 0;
     padding: 0;
     top: 0%;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     left: 1%;
 }
 .navbar ul {
@@ -40,6 +46,8 @@ body,html{
 }
 
 .navbar li {
+    padding: 10px;
+    border: 1px solid #ccc;
     margin: 5px;
     float: left; /* Make the list items display horizontally */
     margin-left: 10px;
@@ -50,4 +58,5 @@ body,html{
 .navbar li a {
     text-decoration: none;
     font-size: 18px;
+    color: #333;
 }
