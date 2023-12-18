@@ -1,65 +1,3 @@
-<<<<<<< HEAD
-*{
-    font-family: 'Roboto', sans-serif;
-}
-body,html{
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-image: url(background-pic.png);
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;
-}
-
-.container{
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-   
-}
-
-.navbar{
-    display: flex;
-    align-items: center;
-    width: 100vw;
-    height: 80px;
-    background-color: white; 
-    flex-direction: row;
-   
-}
-.navbar img{
-    margin: 0;
-    padding: 0;
-    top: 0%;
-    width: 80px;
-    height: 80px;
-    left: 1%;
-}
-.navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.navbar li {
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin: 5px;
-    float: left; /* Make the list items display horizontally */
-    margin-left: 10px;
-    margin-right: 10px;
-    text-decoration: none;
-
-}
-.navbar li a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #333; 
-}
-=======
 *{
     font-family: 'Roboto', sans-serif;
 }
@@ -68,6 +6,7 @@ body,html{
     margin: 0;
     padding: 0;
     height: 100%;
+    position: relative;
     background-image: url('background.png'); /* Replace 'background.jpg' with your actual image file */
     background-size: cover; /* This property ensures that the background image covers the entire viewport */
     background-position: center; /* This property centers the background image */
@@ -79,19 +18,23 @@ body,html{
     padding: 0;
     width: 100vw;
     height: 100vh;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .navbar{
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Add this line to evenly distribute items */
     width: 100vw;
     height: 80px;
     background-color: white;
-    
+    background: rgba(255, 255, 255, 0.2);
     flex-direction: row;
    
 }
+
 .navbar img{
     margin: 0;
     padding: 0;
@@ -122,4 +65,13 @@ body,html{
     font-size: 18px;
     color: #333;
 }
->>>>>>> 9e1503b8c5040ef1db586a04eafc35389229be00
+#translateButton {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+
+}
+
+.translation-button-container {
+    margin-right: 20px; /* Adjust the margin as needed */
+}
