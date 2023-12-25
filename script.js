@@ -8,10 +8,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Call a function to update content based on the selected language
         updateContent();
+
+        // Get weather information based on the selected city
+        getWeather();
     });
 
     // Initial content update
     updateContent();
+
+    // Yeni fonksiyon
+    document.addEventListener('DOMContentLoaded', function () {
+        // Diğer kodlar...
+    
+        function getWeather() {
+            const apiKey = "08bcb1c1b1e5fbc4ef008959069feb5e";
+            const city = document.getElementById('cityInput').value;
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+    
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.querySelector(".city").textContent = data.name;
+    
+                    // Kelvin'den Celsius'a çevirme
+                    const temperatureCelsius = (data.main.temp - 273.15).toFixed(2);
+                    document.querySelector(".temperature").textContent = `${temperatureCelsius} °C`;
+    
+                    document.querySelector(".condition").textContent = data.weather[0].main;
+                })
+                .catch(error => {
+                    console.error("Error fetching weather data:", error);
+                    alert("Error fetching weather data. Please try again.");
+                });
+        }
+    });
+    
 
     function updateContent() {
         // Update content based on the selected language

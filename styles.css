@@ -58,6 +58,9 @@ body,html{
     margin-left: 10px;
     margin-right: 10px;
     text-decoration: none;
+    border-radius: 10px;
+    background-color: blue;
+    background: rgba(0, 0, 0, 0.1);
 
 }
 .navbar li a {
@@ -75,3 +78,46 @@ body,html{
 .translation-button-container {
     margin-right: 20px; /* Adjust the margin as needed */
 }
+/* Reset styles for better consistency */
+/* styles.css */
+
+/* Reset styles for better consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style for the search container */
+
+
+.search-container {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center; /* Butonu ortalamak için */
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the search input */
+.search-input {
+    width: 300px;
+    padding: 15px;
+    border: 2px solid #00B4CC;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+/* Style for the search button */
+.search-button {
+    padding: 15px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #00B4CC;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+
+}
+

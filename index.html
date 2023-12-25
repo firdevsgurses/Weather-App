@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+
     <title>Hava Durumu</title>
 </head>
 <body>
@@ -23,6 +23,45 @@
                 <button id="translateButton"></button>
             </div>
         </div>
-    </div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Şehir Giriniz" id="cityInput">
+            <button type="button" class="search-button" onclick="searchWeather()">Ara</button>
+        </div>
+        <script>
+            function searchWeather() {
+                // API anahtarınızı ekleyin
+                const apiKey = "08bcb1c1b1e5fbc4ef008959069feb5e";
+            const city = document.getElementById('cityInput').value;
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+    
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.querySelector(".city").textContent = data.name;
+    
+                    // Kelvin'den Celsius'a çevirme
+                    const temperatureCelsius = (data.main.temp - 273.15).toFixed(2);
+                    document.querySelector(".temperature").textContent = `${temperatureCelsius} °C`;
+    
+                    document.querySelector(".condition").textContent = data.weather[0].main;
+                })
+                .catch(error => {
+                    console.error("Error fetching weather data:", error);
+                    alert("Error fetching weather data. Please try again.");
+                });
+            }
+        </script>
+        <div class="weather-info">
+            <p>City: <span class="city"></span></p>
+            <p>Temperature: <span class="temperature"></span> °C</p>
+            <p>Condition: <span class="condition"></span></p>
+        </div>
+        
+    <script src="script.js"></script>
 </body>
 </html>
