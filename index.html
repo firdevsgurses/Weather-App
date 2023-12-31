@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-
+   
     <title>Hava Durumu</title>
 </head>
 <body>
@@ -19,12 +19,14 @@
                 <li><a href="#">Hakkımızda</a></li>
                 <li><a href="#">İletişim</a></li>
             </ul>
+            <!-- index.html -->
             <div class="translation-button-container">
-                <button id="translateButton"></button>
+                <button id="translateButton">Eng</button>
             </div>
+
         </div>
         <div class="search-container">
-            <input type="text" class="search-input" placeholder="Şehir Giriniz" id="cityInput">
+            <input type="text" class="search-input" placeholder = "Şehir Giriniz" id ="cityInput">
             <button type="button" class="search-button" onclick="searchWeather()">Ara</button>
         </div>
         <script>
@@ -55,13 +57,14 @@
                     alert("Error fetching weather data. Please try again.");
                 });
             }
-        </script>
+        </script> 
         <div class="weather-info">
-            <p>City: <span class="city"></span></p>
-            <p>Temperature: <span class="temperature"></span> °C</p>
-            <p>Condition: <span class="condition"></span></p>
+            <p id = "cityId">Şehir: <span class="city"></span></p> 
+            <p id = "temperatureId">Sıcaklık: <span class="temperature"></span></p>
+            <p id = "conditionId">Hava Durumu: <span class="condition"></span></p>
         </div>
-        
+        <div class="footer">
+        </div>
     <script src="script.js"></script>
 </body>
 </html>

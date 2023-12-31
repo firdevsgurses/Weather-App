@@ -8,9 +8,12 @@ body,html{
     height: 100%;
     position: relative;
     background-image: url('background.png'); /* Replace 'background.jpg' with your actual image file */
-    background-size: cover; /* This property ensures that the background image covers the entire viewport */
-    background-position: center; /* This property centers the background image */
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: center; /* Dikeyde ortala */
+    justify-content: center; /* Yatayda ortala */
 }
 
 .container{
@@ -21,6 +24,7 @@ body,html{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: center;
 }
 
 .navbar{
@@ -78,19 +82,6 @@ body,html{
 .translation-button-container {
     margin-right: 20px; /* Adjust the margin as needed */
 }
-/* Reset styles for better consistency */
-/* styles.css */
-
-/* Reset styles for better consistency */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Style for the search container */
-
-
 .search-container {
     position: absolute;
     top: 20%;
@@ -121,3 +112,11 @@ body,html{
 
 }
 
+.weather-info {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center; /* Butonu ortalamak için */
+    background: rgba(255, 255, 255, 0.5);;
+}
