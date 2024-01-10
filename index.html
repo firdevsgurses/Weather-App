@@ -15,7 +15,7 @@
             <div class="navbar">
                 <img src="logo.png" alt="Weather App Logo">
                 <ul>
-                    <li><a href="#">Anasayfa</a></li>
+                    <li><a href="">Anasayfa</a></li>
                     <li><a href="#about-container">Hakkımızda</a></li>
                     <li><a href="#contact-container">İletişim</a></li>
                 </ul>
@@ -32,23 +32,36 @@
                 <p id="temperatureId">Sıcaklık: <span class="temperature" id="temp"></span></p>
                 <p id="conditionId">Hava Durumu: <span class="condition"></span></p>
             </div>
-            <div class="footer">
-                <!-- Footer içeriği buraya eklenebilir -->
-            </div>
+            
         </div>
     </div>
     
     <div class="about-container" id="about-container">
-        <div class="header">HAKKIMIZDA</div>
-        Hava Durumu uygulaması made by Firdevs Gürses
+        <div class="header">Hakkımızda</div>
+        <p>
+            Hava Durumu uygulaması, kullanıcıların dünya genelindeki şehirlerin güncel hava durumu bilgilerini öğrenmelerine yardımcı olan bir uygulamadır.
+        </p>
+        <p>
+            Hava Durumu uygulamasında, kullanıcıların doğru, hızlı ve kullanıcı dostu bir şekilde hava durumu bilgilerini alabilmelerini hedefledik.
+        </p>
+        <p>
+            Hava Durumu uygulamasını kullanarak, seyahat planlarınızı yapabilir, günlük giyim seçimlerinizi belirleyebilir ve her zaman güncel hava durumu bilgilerine ulaşabilirsiniz.
+        </p>
     </div>
     
     <div class="contact-container" id="contact-container">
-        <div class="header">ILETISIM</div>
+        <div class="header">İletişim</div>
         <div class="contact-infos">
-            <div class="Name">Firdevs Gürses</div>
-            <div class="E-mail">firdevsgurses00@gmail.com</div>
-            <div class="Github">https://github.com/firdevsgurses</div>
+            <p>
+                <div class="Name">Firdevs Gürses</div>
+            </p>
+            <p>
+                <div class="E-mail">firdevsgurses00@gmail.com</div>
+            </p>
+            <p>
+                <div class="Github">https://github.com/firdevsgurses</div>
+            </p>
+            
         </div>
     </div>
     
@@ -58,7 +71,7 @@
             const apiKey = "08bcb1c1b1e5fbc4ef008959069feb5e";
             const city = document.getElementById('cityInput').value;
             const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-
+    
             fetch(url)
                 .then(response => {
                     if (!response.ok) {
@@ -68,15 +81,15 @@
                 })
                 .then(data => {
                     document.querySelector(".city").textContent = data.name;
-
+    
                     const temperatureCelsius = (data.main.temp - 273.15).toFixed(2);
                     document.querySelector(".temperature").textContent = `${temperatureCelsius} °C`;
-
+    
                     const body = document.body;
                     const condition = document.querySelector(".condition");
-
+    
                     condition.textContent = data.weather[0].main;
-
+    
                     switch (condition.textContent) {
                         case "Rain":
                             body.style.backgroundImage = 'url("rainy-day.jpg")';
@@ -91,15 +104,50 @@
                             body.style.backgroundImage = 'url("snowy-day.jpg")';
                             break;
                         default:
-                            body.style.backgroundImage = ''; // Varsayılan durum
+                            body.style.backgroundImage = '';
                             break;
                     }
                 })
                 .catch(error => {
-                    console.error("Error fetching weather data:", error);
-                    alert("Error fetching weather data. Please try again.");
+                    console.error("Veriler çekilirken bir hata oluştu.", error);
+                    alert("Veriler çekilirken bir hata oluştu. Lütfen tekrar deneyin.");
                 });
         }
-    </script> 
+
+        function toggleAboutAndContact() {
+            const aboutContainer = document.getElementById('about-container');
+            const contactContainer = document.getElementById('contact-container');
+            
+            // Hakkımızda veya İletişim div'ini göster veya gizle
+            aboutContainer.style.display = (aboutContainer.style.display === 'none' || aboutContainer.style.display === '') ? 'block' : 'none';
+            contactContainer.style.display = (contactContainer.style.display === 'none' || contactContainer.style.display === '') ? 'block' : 'none';
+
+            // Eğer her ikisi de açıksa, bir tanesini kapat
+            if (aboutContainer.style.display === 'block' && contactContainer.style.display === 'block') {
+                if (aboutContainer.offsetTop < contactContainer.offsetTop) {
+                    contactContainer.style.display = 'none';
+                } else {
+                    aboutContainer.style.display = 'none';
+                }
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function showAbout() {
+            toggleAboutAndContact();
+        }
+
+        function showContact() {
+            toggleAboutAndContact();
+        }
+    </script>
+    
 </body>
 </html>

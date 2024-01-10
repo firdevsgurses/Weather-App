@@ -64,4 +64,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert("Error fetching weather data. Please try again.");
             });
     }
+    
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
 });
+document.addEventListener("scroll", function() {
+    var navbar = document.getElementById("navbar");
+    if (window.scrollY > navbar.offsetTop) {
+        navbar.classList.add("navbar-scrolled");
+    } else {
+        navbar.classList.remove("navbar-scrolled");
+    }
+    
+});
+
