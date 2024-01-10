@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-   
     <title>Hava Durumu</title>
 </head>
 <body>
     <div id="pageContainer">
-        <!-- Tüm HTML içeriğiniz burada olacak -->
         <div class="container">
             <div class="navbar">
                 <img src="logo.png" alt="Weather App Logo">
                 <ul>
                     <li><a href="#">Anasayfa</a></li>
-                    <li><a href="#">Hakkımızda</a></li>
-                    <li><a href="#">İletişim</a></li>
+                    <li><a href="#about-container">Hakkımızda</a></li>
+                    <li><a href="#contact-container">İletişim</a></li>
                 </ul>
                 <div class="translation-button-container">
                     <button id="translateButton">Eng</button>
@@ -29,44 +27,79 @@
                 <input type="text" class="search-input" placeholder="Şehir Giriniz" id="cityInput">
                 <button type="button" class="search-button" onclick="searchWeather()">Ara</button>
             </div>
-            <script>
-                function searchWeather() {
-                    // API anahtarınızı ekleyin
-                    const apiKey = "08bcb1c1b1e5fbc4ef008959069feb5e";
-                    const city = document.getElementById('cityInput').value;
-                    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-        
-                    fetch(url)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! Status: ${response.status}`);
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            document.querySelector(".city").textContent = data.name;
-        
-                            // Kelvin'den Celsius'a çevirme
-                            const temperatureCelsius = (data.main.temp - 273.15).toFixed(2);
-                            document.querySelector(".temperature").textContent = `${temperatureCelsius} °C`;
-        
-                            document.querySelector(".condition").textContent = data.weather[0].main;
-                        })
-                        .catch(error => {
-                            console.error("Error fetching weather data:", error);
-                            alert("Error fetching weather data. Please try again.");
-                        });
-                }
-            </script> 
             <div class="weather-info">
                 <p id="cityId">Şehir: <span class="city"></span></p> 
-                <p id="temperatureId">Sıcaklık: <span class="temperature"></span></p>
+                <p id="temperatureId">Sıcaklık: <span class="temperature" id="temp"></span></p>
                 <p id="conditionId">Hava Durumu: <span class="condition"></span></p>
             </div>
             <div class="footer">
+                <!-- Footer içeriği buraya eklenebilir -->
             </div>
         </div>
     </div>
+    
+    <div class="about-container" id="about-container">
+        <div class="header">HAKKIMIZDA</div>
+        Hava Durumu uygulaması made by Firdevs Gürses
+    </div>
+    
+    <div class="contact-container" id="contact-container">
+        <div class="header">ILETISIM</div>
+        <div class="contact-infos">
+            <div class="Name">Firdevs Gürses</div>
+            <div class="E-mail">firdevsgurses00@gmail.com</div>
+            <div class="Github">https://github.com/firdevsgurses</div>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
+    <script>
+        function searchWeather() {
+            const apiKey = "08bcb1c1b1e5fbc4ef008959069feb5e";
+            const city = document.getElementById('cityInput').value;
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.querySelector(".city").textContent = data.name;
+
+                    const temperatureCelsius = (data.main.temp - 273.15).toFixed(2);
+                    document.querySelector(".temperature").textContent = `${temperatureCelsius} °C`;
+
+                    const body = document.body;
+                    const condition = document.querySelector(".condition");
+
+                    condition.textContent = data.weather[0].main;
+
+                    switch (condition.textContent) {
+                        case "Rain":
+                            body.style.backgroundImage = 'url("rainy-day.jpg")';
+                            break;
+                        case "Clouds":
+                            body.style.backgroundImage = 'url("cloudy-day.jpg")';
+                            break;
+                        case "Sun":
+                            body.style.backgroundImage = 'url("sunny-day.jpg")';
+                            break;
+                        case "Snow":
+                            body.style.backgroundImage = 'url("snowy-day.jpg")';
+                            break;
+                        default:
+                            body.style.backgroundImage = ''; // Varsayılan durum
+                            break;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching weather data:", error);
+                    alert("Error fetching weather data. Please try again.");
+                });
+        }
+    </script> 
 </body>
 </html>
